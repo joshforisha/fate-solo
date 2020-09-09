@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --bright-blue: #5ec4ff;
+  --dark-blue: #1b658f;
+  --dark: rgba(24, 24, 24, 0.85);
+  --light-blue: #8bd5ff;
+  --light: rgba(248, 248, 248, 0.85);
+  --pale-blue: #b8e5ff;
+  --white: #faf9f9;
+
+  /* Sizes */
+  --huge: 4rem;
+  --large: 2rem;
+  --medium: 1rem;
+  --small: 0.5rem;
+  --tiny: 0.25rem;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--dark);
+  font-family: "Lato", sans-serif;
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1;
+}
