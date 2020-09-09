@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "parcel serve src/index.html",
-    "test": "tsc --noEmit src/main.tsx"
+    "test": "tsc --noEmit"
   },
   "husky": {
     "hooks": {
