@@ -1,4 +1,6 @@
 export enum ActionType {
+  CreateAspect = "CREATE_ASPECT",
+  CreateBoost = "CREATE_BOOST",
   CreateEntity = "CREATE_ENTITY",
   StartEditing = "START_EDITING",
   StopEditing = "STOP_EDITING",
@@ -10,6 +12,14 @@ export interface Action {
 }
 
 // Function helpers ----------------------------------------------------------
+
+export function createAspect(entityId: string, name: string): Action {
+  return { entityId, name, type: ActionType.CreateAspect };
+}
+
+export function createBoost(entityId: string, name: string): Action {
+  return { entityId, name, type: ActionType.CreateBoost };
+}
 
 export function createEntity(name: string): Action {
   return { name, type: ActionType.CreateEntity };

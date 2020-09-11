@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Action, startEditing } from "~/data/actions";
+import { Action, createAspect, startEditing } from "~/data/actions";
 import { AspectView } from "~/view/aspect-view";
 import { Entity } from "~/data/entity";
 
@@ -29,7 +29,12 @@ interface Props {
 
 export function EntityView({ dispatch, entity }: Props): React.FC {
   function onClick() {
-    const actions = {};
+    const actions = {
+      "Add Aspect": () => {
+        const name = window.prompt("Enter aspect name");
+        if (name) dispatch(createAspect(entity.id, name));
+      },
+    };
     dispatch(startEditing(entity.name, actions));
   }
 
