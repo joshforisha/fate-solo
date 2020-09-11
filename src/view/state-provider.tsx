@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Action } from "~/data/action";
+import { Action } from "~/data/actions";
 import { State, initialState, update } from "~/data/state";
 
 const StateContext = React.createContext();
