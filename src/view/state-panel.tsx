@@ -1,10 +1,17 @@
 import * as React from "react";
 import styled from "styled-components";
+import { Button } from "~/view/button";
+import { createEntity } from "~/data/actions";
 import { EntityView } from "~/view/entity-view";
 import { useState } from "~/view/state-provider";
 
+const AddEntityButton = styled(Button)`
+  margin: var(--medium) var(--small) 0px;
+  width: calc(100% - 2 * var(--small));
+`;
+
 const Panel = styled.div`
-  border-right: 1px solid var(--dark-blue);
+  background-color: var(--light-gray);
   height: 100vh;
   overflow-y: scroll;
   padding-bottom: var(--small);
@@ -14,11 +21,17 @@ const Panel = styled.div`
 export function StatePanel(): React.FC {
   const [{ entities }, dispatch] = useState();
 
+  function addEntity() {
+    const name = window.prompt("Enter entity name");
+    if (name) dispatch(createEntity(name));
+  }
+
   return (
     <Panel>
       {entities.map((entity, i) => (
         <EntityView dispatch={dispatch} entity={entity} key={i} />
       ))}
+      <AddEntityButton onClick={addEntity}>Add Entity</AddEntityButton>
     </Panel>
   );
 }
