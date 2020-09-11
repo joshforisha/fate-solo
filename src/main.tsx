@@ -1,13 +1,25 @@
 import "~/main.css";
 import * as React from "react";
+import styled from "styled-components";
+import { ActionsPanel } from "~/view/actions-panel";
+import { GameStory } from "~/view/game-story";
 import { render } from "react-dom";
-import { StateProvider } from "~/data/state";
+import { StatePanel } from "~/view/state-panel";
+import { StateProvider } from "~/view/state-provider";
+
+const MainView = styled.div`
+  display: flex;
+`;
 
 function Main() {
   return (
-    <StateProvider>
-      <h1>Hello world</h1>
-    </StateProvider>
+    <MainView>
+      <StateProvider>
+        <ActionsPanel />
+        <StatePanel />
+        <GameStory />
+      </StateProvider>
+    </MainView>
   );
 }
 

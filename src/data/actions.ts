@@ -1,5 +1,7 @@
 export enum ActionType {
   CreateEntity = "CREATE_ENTITY",
+  StartEditing = "START_EDITING",
+  StopEditing = "STOP_EDITING",
 }
 
 export interface Action {
@@ -11,4 +13,15 @@ export interface Action {
 
 export function createEntity(name: string): Action {
   return { name, type: ActionType.CreateEntity };
+}
+
+export function startEditing(
+  title: string,
+  actions: Record<string, () => void>
+): Action {
+  return { actions, title, type: ActionType.StartEditing };
+}
+
+export function stopEditing(): Action {
+  return { type: ActionType.StopEditing };
 }

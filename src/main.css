@@ -8,10 +8,11 @@
   /* Colors */
   --bright-blue: #5ec4ff;
   --dark-blue: #1b658f;
+  --darker-blue: #0b557f;
   --dark: rgba(24, 24, 24, 0.85);
   --light-blue: #8bd5ff;
   --light: rgba(248, 248, 248, 0.85);
-  --pale-blue: #b8e5ff;
+  --pale-blue: rgba(27, 101, 143, 0.1);
   --white: #faf9f9;
 
   /* Sizes */
@@ -26,6 +27,8 @@ body {
   background-color: var(--white);
   color: var(--dark);
   font-family: "Lato", sans-serif;
+  line-height: 1.4;
+  margin: 0px;
 }
 
 h1 {
