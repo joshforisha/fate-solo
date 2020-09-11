@@ -2,6 +2,8 @@ export enum ActionType {
   CreateAspect = "CREATE_ASPECT",
   CreateBoost = "CREATE_BOOST",
   CreateEntity = "CREATE_ENTITY",
+  DeleteAspect = "DELETE_ASPECT",
+  DeleteEntity = "DELETE_ENTITY",
   StartEditing = "START_EDITING",
   StopEditing = "STOP_EDITING",
 }
@@ -23,6 +25,15 @@ export function createBoost(entityId: string, name: string): Action {
 
 export function createEntity(name: string): Action {
   return { name, type: ActionType.CreateEntity };
+}
+
+export function deleteAspect(aspectId: string): Action {
+  return { aspectId, type: ActionType.DeleteAspect };
+}
+
+export function deleteEntity(entityId: string): Action {
+  console.log(entityId);
+  return { entityId, type: ActionType.DeleteEntity };
 }
 
 export function startEditing(

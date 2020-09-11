@@ -52,6 +52,21 @@ export function update(state: State, action: Action): State {
         entities: [...state.entities, newEntity(action.name)],
       };
 
+    case ActionType.DeleteAspect:
+      return {
+        ...state,
+        entities: state.entities.map((entity) => ({
+          ...entity,
+          aspects: entity.aspects.filter(({ id }) => id !== action.aspectId),
+        })),
+      };
+
+    case ActionType.DeleteEntity:
+      return {
+        ...state,
+        entities: state.entities.filter(({ id }) => id !== action.entityId),
+      };
+
     case ActionType.StartEditing:
       return {
         ...state,

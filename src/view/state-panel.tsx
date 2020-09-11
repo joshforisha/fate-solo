@@ -22,7 +22,7 @@ export function StatePanel(): React.FC {
   const [{ entities }, dispatch] = useState();
 
   function addEntity() {
-    const name = window.prompt("Enter entity name");
+    const name = window.prompt("Entity name:");
     if (name) dispatch(createEntity(name));
   }
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
-import { Action, startEditing } from "~/data/actions";
+import { Action, deleteAspect, startEditing } from "~/data/actions";
 import { Aspect, AspectType } from "~/data/aspect";
 
 const Container = styled.span`
@@ -50,7 +50,12 @@ export function AspectView({ aspect, dispatch }: Props): React.FC {
     ) : null;
 
   function onClick() {
-    const actions = {};
+    const actions = {
+      "Remove Aspect": () => {
+        const confirmed = window.confirm("Are you sure?");
+        if (confirmed) dispatch(deleteAspect(aspect.id));
+      },
+    };
     dispatch(startEditing(`“${aspect.name}”`, actions));
   }
 

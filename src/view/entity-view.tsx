@@ -1,8 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Action, createAspect, startEditing } from "~/data/actions";
 import { AspectView } from "~/view/aspect-view";
 import { Entity } from "~/data/entity";
+import {
+  Action,
+  createAspect,
+  createBoost,
+  deleteEntity,
+  startEditing,
+} from "~/data/actions";
 
 const Container = styled.div``;
 
@@ -31,8 +37,16 @@ export function EntityView({ dispatch, entity }: Props): React.FC {
   function onClick() {
     const actions = {
       "Add Aspect": () => {
-        const name = window.prompt("Enter aspect name");
+        const name = window.prompt("Aspect name:");
         if (name) dispatch(createAspect(entity.id, name));
+      },
+      "Add Boost": () => {
+        const name = window.prompt("Boost name:");
+        if (name) dispatch(createBoost(entity.id, name));
+      },
+      "Remove Entity": () => {
+        const confirmed = window.confirm("Are you sure?");
+        if (confirmed) dispatch(deleteEntity(entity.id));
       },
     };
     dispatch(startEditing(entity.name, actions));
