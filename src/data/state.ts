@@ -14,16 +14,7 @@ export const initialState: State = {
   editing: false,
   editingActions: [],
   editingTitle: "",
-  entities: [
-    {
-      ...newEntity("Josh"),
-      fatePoints: 3,
-      aspects: [
-        newAspect("Professional procrastinator"),
-        newBoost("Bitten by mosquitoes"),
-      ],
-    },
-  ],
+  entities: [],
 };
 
 function updateEntity(
@@ -107,6 +98,22 @@ export function update(state: State, action: Action): State {
       return {
         ...state,
         editing: false,
+      };
+
+    case ActionType.ToggleStressBox:
+      return {
+        ...state,
+        entities: state.entities.map((entity) => ({
+          ...entity,
+          tracks: entity.tracks.map((track) => ({
+            ...track,
+            boxes: track.boxes.map((box) =>
+              box.id === action.stressBoxId
+                ? { ...box, checked: !box.checked }
+                : box
+            ),
+          })),
+        })),
       };
 
     default:

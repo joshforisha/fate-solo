@@ -1,5 +1,5 @@
 import { Aspect } from "~/data/aspect";
-import { Track } from "~/data/track";
+import { StressTrack } from "~/data/stress";
 import { v4 as uuid } from "uuid";
 
 export interface Entity {
@@ -7,7 +7,7 @@ export interface Entity {
   fatePoints: number;
   id: string;
   name: string;
-  tracks: Track[];
+  tracks: StressTrack[];
 }
 
 export function newEntity(name: string): Entity {

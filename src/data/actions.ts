@@ -12,6 +12,7 @@ export enum ActionType {
   SubtractFatePoint = "SUBTRACT_FATE_POINT",
   StartEditing = "START_EDITING",
   StopEditing = "STOP_EDITING",
+  ToggleStressBox = "TOGGLE_STRESS_BOX",
 }
 
 export interface Action {
@@ -63,4 +64,8 @@ export function startEditing(title: string, actions: ViewAction[]): Action {
 
 export function stopEditing(): Action {
   return { type: ActionType.StopEditing };
+}
+
+export function toggleStressBox(stressBoxId: string): Action {
+  return { stressBoxId, type: ActionType.ToggleStressBox };
 }

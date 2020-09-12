@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { AspectView } from "~/view/aspect-view";
 import { Entity } from "~/data/entity";
+import { StressView } from "~/view/stress-view";
 import {
   Action,
   addFatePoint,
@@ -94,12 +95,16 @@ export function EntityView({ dispatch, entity }: Props): React.FC {
     dispatch(startEditing(entity.name, actions));
   }
 
-  const aspectViews = entity.aspects.map((aspect, i) => (
-    <AspectView aspect={aspect} dispatch={dispatch} key={i} />
-  ));
-
   const fatePoints =
     entity.fatePoints > 0 ? <FatePoints>{entity.fatePoints}</FatePoints> : null;
+
+  const stress = entity.tracks.map((track) => (
+    <StressView track={track} dispatch={dispatch} key={track.id} />
+  ));
+
+  const aspectViews = entity.aspects.map((aspect) => (
+    <AspectView aspect={aspect} dispatch={dispatch} key={aspect.id} />
+  ));
 
   return (
     <Container>
@@ -107,6 +112,7 @@ export function EntityView({ dispatch, entity }: Props): React.FC {
         {entity.name}
         {fatePoints}
       </Name>
+      {stress}
       {aspectViews}
     </Container>
   );
