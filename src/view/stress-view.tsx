@@ -1,7 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Action, startEditing, toggleStressBox } from "~/data/actions";
 import { StressTrack } from "~/data/stress";
+import {
+  Action,
+  deleteStressTrack,
+  startEditing,
+  toggleStressBox,
+} from "~/data/actions";
 
 const Box = styled.button`
   background-color: ${({ checked }) =>
@@ -49,7 +54,17 @@ interface Props {
 
 export function StressView({ dispatch, track }: Props): React.FC {
   function onClick() {
-    dispatch(startEditing(track.name, []));
+    const actions = [
+      {
+        name: "Delete",
+        icon: "minus",
+        action: () => {
+          const confirmed = window.confirm("Are you sure?");
+          if (confirmed) dispatch(deleteStressTrack(track.id));
+        },
+      },
+    ];
+    dispatch(startEditing(track.name, actions));
   }
 
   const boxes = track.boxes.map(({ checked, id, rating }) => {

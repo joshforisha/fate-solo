@@ -1,6 +1,7 @@
 import { Action, ActionType } from "~/data/actions";
 import { Entity, newEntity } from "~/data/entity";
 import { newAspect, newBoost } from "~/data/aspect";
+import { newStressTrack } from "~/data/stress";
 import { ViewAction } from "~/data/view-action";
 
 export interface State {
@@ -62,6 +63,18 @@ export function update(state: State, action: Action): State {
         entities: [...state.entities, newEntity(action.name)],
       };
 
+    case ActionType.CreateStressTrack:
+      return {
+        ...state,
+        entities: updateEntity(state.entities, action.entityId, (entity) => ({
+          ...entity,
+          tracks: [
+            ...entity.tracks,
+            newStressTrack(action.name, action.ratings),
+          ],
+        })),
+      };
+
     case ActionType.DeleteAspect:
       return {
         ...state,
@@ -75,6 +88,15 @@ export function update(state: State, action: Action): State {
       return {
         ...state,
         entities: state.entities.filter(({ id }) => id !== action.entityId),
+      };
+
+    case ActionType.DeleteStressTrack:
+      return {
+        ...state,
+        entities: state.entities.map((entity) => ({
+          ...entity,
+          tracks: entity.tracks.filter(({ id }) => id !== action.stressTrackId),
+        })),
       };
 
     case ActionType.StartEditing:

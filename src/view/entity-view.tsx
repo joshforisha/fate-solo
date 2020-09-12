@@ -8,6 +8,7 @@ import {
   addFatePoint,
   createAspect,
   createBoost,
+  createStressTrack,
   deleteEntity,
   startEditing,
   subtractFatePoint,
@@ -89,6 +90,25 @@ export function EntityView({ dispatch, entity }: Props): React.FC {
         icon: "minus",
         action: () => {
           dispatch(subtractFatePoint(entity.id));
+        },
+      },
+      {
+        name: "Stress Track",
+        icon: "plus",
+        action: () => {
+          const trackName = window.prompt("Track name:");
+          if (trackName) {
+            const ratingsString = window.prompt("Ratings string (e.g. '123'):");
+            if (ratingsString) {
+              dispatch(
+                createStressTrack(
+                  entity.id,
+                  trackName,
+                  Array.prototype.map.call(ratingsString, (s) => s)
+                )
+              );
+            }
+          }
         },
       },
     ];
