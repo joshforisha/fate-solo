@@ -1,3 +1,5 @@
+import { ViewAction } from "~/data/view-action";
+
 export enum ActionType {
   CreateAspect = "CREATE_ASPECT",
   CreateBoost = "CREATE_BOOST",
@@ -32,14 +34,10 @@ export function deleteAspect(aspectId: string): Action {
 }
 
 export function deleteEntity(entityId: string): Action {
-  console.log(entityId);
   return { entityId, type: ActionType.DeleteEntity };
 }
 
-export function startEditing(
-  title: string,
-  actions: Record<string, () => void>
-): Action {
+export function startEditing(title: string, actions: ViewAction[]): Action {
   return { actions, title, type: ActionType.StartEditing };
 }
 

@@ -50,12 +50,16 @@ export function AspectView({ aspect, dispatch }: Props): React.FC {
     ) : null;
 
   function onClick() {
-    const actions = {
-      "Remove Aspect": () => {
-        const confirmed = window.confirm("Are you sure?");
-        if (confirmed) dispatch(deleteAspect(aspect.id));
+    const actions = [
+      {
+        action: () => {
+          const confirmed = window.confirm("Are you sure?");
+          if (confirmed) dispatch(deleteAspect(aspect.id));
+        },
+        icon: "minus",
+        name: "Remove Aspect",
       },
-    };
+    ];
     dispatch(startEditing(`“${aspect.name}”`, actions));
   }
 

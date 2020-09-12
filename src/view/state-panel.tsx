@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "~/view/button";
 import { createEntity } from "~/data/actions";
 import { EntityView } from "~/view/entity-view";
+import { Icon } from "~/view/icon";
 import { useState } from "~/view/state-provider";
 
 const AddEntityButton = styled(Button)`
@@ -31,7 +32,9 @@ export function StatePanel(): React.FC {
       {entities.map((entity, i) => (
         <EntityView dispatch={dispatch} entity={entity} key={i} />
       ))}
-      <AddEntityButton onClick={addEntity}>Add Entity</AddEntityButton>
+      <AddEntityButton onClick={addEntity}>
+        <Icon name="plus" /> Entity
+      </AddEntityButton>
     </Panel>
   );
 }

@@ -1,17 +1,18 @@
 import { Action, ActionType } from "~/data/actions";
 import { Entity, newEntity } from "~/data/entity";
 import { newAspect, newBoost } from "~/data/aspect";
+import { ViewAction } from "~/data/view-action";
 
 export interface State {
   editing: boolean;
-  editingActions: Record<string, () => void>;
+  editingActions: ViewAction[];
   editingTitle: string;
   entities: Entity[];
 }
 
 export const initialState: State = {
   editing: false,
-  editingActions: {},
+  editingActions: [],
   editingTitle: "",
   entities: [],
 };

@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { Button } from "~/view/button";
+import { Icon } from "~/view/icon";
 import { useState } from "~/view/state-provider";
 import { stopEditing } from "~/data/actions";
 
@@ -19,6 +20,7 @@ const Backdrop = styled.div`
   position: absolute;
   transition: opacity 100ms ease-in-out;
   width: 100vw;
+  z-index: 100;
 `;
 
 const Panel = styled.div`
@@ -45,9 +47,10 @@ const Title = styled.span`
 export function ActionsPanel(): React.FC {
   const [{ editing, editingActions, editingTitle }, dispatch] = useState();
 
-  const actionButtons = Object.entries(editingActions).map(([action, fn]) => (
-    <ActionButton onClick={fn} key={action}>
-      {action}
+  const actionButtons = editingActions.map(({ action, icon, name }) => (
+    <ActionButton onClick={action} key={name}>
+      <Icon name={icon} />
+      {name}
     </ActionButton>
   ));
 

@@ -35,20 +35,32 @@ interface Props {
 
 export function EntityView({ dispatch, entity }: Props): React.FC {
   function onClick() {
-    const actions = {
-      "Add Aspect": () => {
-        const name = window.prompt("Aspect name:");
-        if (name) dispatch(createAspect(entity.id, name));
+    const actions = [
+      {
+        action: () => {
+          const name = window.prompt("Aspect name:");
+          if (name) dispatch(createAspect(entity.id, name));
+        },
+        icon: "plus",
+        name: "Aspect",
       },
-      "Add Boost": () => {
-        const name = window.prompt("Boost name:");
-        if (name) dispatch(createBoost(entity.id, name));
+      {
+        action: () => {
+          const name = window.prompt("Boost name:");
+          if (name) dispatch(createBoost(entity.id, name));
+        },
+        icon: "plus",
+        name: "Boost",
       },
-      "Remove Entity": () => {
-        const confirmed = window.confirm("Are you sure?");
-        if (confirmed) dispatch(deleteEntity(entity.id));
+      {
+        action: () => {
+          const confirmed = window.confirm("Are you sure?");
+          if (confirmed) dispatch(deleteEntity(entity.id));
+        },
+        icon: "minus",
+        name: "Entity",
       },
-    };
+    ];
     dispatch(startEditing(entity.name, actions));
   }
 
