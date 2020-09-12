@@ -4,6 +4,7 @@ import { StressTrack } from "~/data/stress";
 import {
   Action,
   deleteStressTrack,
+  renameStressTrack,
   startEditing,
   toggleStressBox,
 } from "~/data/actions";
@@ -61,6 +62,16 @@ export function StressView({ dispatch, track }: Props): React.FC {
         action: () => {
           const confirmed = window.confirm("Are you sure?");
           if (confirmed) dispatch(deleteStressTrack(track.id));
+        },
+      },
+      {
+        name: "Rename",
+        icon: "edit",
+        action: () => {
+          const newName = window.prompt(`New name for “${track.name}”:`);
+          if (newName) {
+            dispatch(renameStressTrack(track.id, newName));
+          }
         },
       },
     ];

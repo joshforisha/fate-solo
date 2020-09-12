@@ -69,6 +69,10 @@ export function renameEntity(entityId: string, name: string): Action {
   return { entityId, name, type: ActionType.RenameEntity };
 }
 
+export function renameStressTrack(stressTrackId: string, name: string): Action {
+  return { name, stressTrackId, type: ActionType.RenameStressTrack };
+}
+
 export function subtractFatePoint(entityId: string): Action {
   return { entityId, type: ActionType.SubtractFatePoint };
 }

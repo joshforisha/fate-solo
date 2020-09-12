@@ -121,6 +121,19 @@ export function update(state: State, action: Action): State {
         })),
       };
 
+    case ActionType.RenameStressTrack:
+      return {
+        ...state,
+        entities: state.entities.map((entity) => ({
+          ...entity,
+          tracks: entity.tracks.map((track) =>
+            track.id === action.stressTrackId
+              ? { ...track, name: action.name }
+              : track
+          ),
+        })),
+      };
+
     case ActionType.StartEditing:
       return {
         ...state,
