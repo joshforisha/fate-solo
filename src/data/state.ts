@@ -14,7 +14,16 @@ export const initialState: State = {
   editing: false,
   editingActions: [],
   editingTitle: "",
-  entities: [],
+  entities: [
+    {
+      ...newEntity("Josh"),
+      fatePoints: 3,
+      aspects: [
+        newAspect("Professional procrastinator"),
+        newBoost("Bitten by mosquitoes"),
+      ],
+    },
+  ],
 };
 
 function updateEntity(
@@ -29,6 +38,15 @@ function updateEntity(
 
 export function update(state: State, action: Action): State {
   switch (action.type) {
+    case ActionType.AddFatePoint:
+      return {
+        ...state,
+        entities: updateEntity(state.entities, action.entityId, (entity) => ({
+          ...entity,
+          fatePoints: entity.fatePoints + 1,
+        })),
+      };
+
     case ActionType.CreateAspect:
       return {
         ...state,
@@ -74,6 +92,15 @@ export function update(state: State, action: Action): State {
         editing: true,
         editingActions: action.actions,
         editingTitle: action.title,
+      };
+
+    case ActionType.SubtractFatePoint:
+      return {
+        ...state,
+        entities: updateEntity(state.entities, action.entityId, (entity) => ({
+          ...entity,
+          fatePoints: Math.max(0, entity.fatePoints - 1),
+        })),
       };
 
     case ActionType.StopEditing:

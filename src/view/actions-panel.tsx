@@ -47,8 +47,8 @@ const Title = styled.span`
 export function ActionsPanel(): React.FC {
   const [{ editing, editingActions, editingTitle }, dispatch] = useState();
 
-  const actionButtons = editingActions.map(({ action, icon, name }) => (
-    <ActionButton onClick={action} key={name}>
+  const actionButtons = editingActions.map(({ action, icon, name }, i) => (
+    <ActionButton onClick={action} key={i}>
       <Icon name={icon} />
       {name}
     </ActionButton>

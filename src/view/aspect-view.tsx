@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
 import { Action, deleteAspect, startEditing } from "~/data/actions";
-import { Aspect, AspectType } from "~/data/aspect";
+import { Aspect } from "~/data/aspect";
 
 const Container = styled.span`
   align-items: center;
@@ -24,9 +24,9 @@ const Container = styled.span`
 `;
 
 const FreeInvokes = styled.span`
-  background-color: var(--dark-blue);
+  background-color: var(--dark);
   border-radius: 0.5rem;
-  color: var(--white);
+  color: var(--light);
   display: inline-block;
   font-size: 0.5rem;
   font-weight: 700;
@@ -64,7 +64,7 @@ export function AspectView({ aspect, dispatch }: Props): React.FC {
   }
 
   return (
-    <Container onClick={onClick} isBoost={aspect.type === AspectType.Boost}>
+    <Container onClick={onClick} isBoost={aspect.boost}>
       {aspect.name}
       {freeInvokeCount}
     </Container>

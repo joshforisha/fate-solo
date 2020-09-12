@@ -1,11 +1,15 @@
 import { ViewAction } from "~/data/view-action";
 
 export enum ActionType {
+  AddFatePoint = "ADD_FATE_POINT",
   CreateAspect = "CREATE_ASPECT",
   CreateBoost = "CREATE_BOOST",
   CreateEntity = "CREATE_ENTITY",
   DeleteAspect = "DELETE_ASPECT",
   DeleteEntity = "DELETE_ENTITY",
+  RenameAspect = "RENAME_ASPECT",
+  RenameEntity = "RENAME_ENTITY",
+  SubtractFatePoint = "SUBTRACT_FATE_POINT",
   StartEditing = "START_EDITING",
   StopEditing = "STOP_EDITING",
 }
@@ -16,6 +20,10 @@ export interface Action {
 }
 
 // Function helpers ----------------------------------------------------------
+
+export function addFatePoint(entityId: string): Action {
+  return { entityId, type: ActionType.AddFatePoint };
+}
 
 export function createAspect(entityId: string, name: string): Action {
   return { entityId, name, type: ActionType.CreateAspect };
@@ -35,6 +43,18 @@ export function deleteAspect(aspectId: string): Action {
 
 export function deleteEntity(entityId: string): Action {
   return { entityId, type: ActionType.DeleteEntity };
+}
+
+export function renameAspect(aspectId: string, name: string): Action {
+  return { aspectId, name, type: ActionType.RenameAspect };
+}
+
+export function renameEntity(entityId: string, name: string): Action {
+  return { entityId, name, type: ActionType.RenameEntity };
+}
+
+export function subtractFatePoint(entityId: string): Action {
+  return { entityId, type: ActionType.SubtractFatePoint };
 }
 
 export function startEditing(title: string, actions: ViewAction[]): Action {
