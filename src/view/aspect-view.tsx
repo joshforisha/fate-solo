@@ -1,7 +1,12 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
-import { Action, deleteAspect, startEditing } from "~/data/actions";
 import { Aspect } from "~/data/aspect";
+import {
+  Action,
+  deleteAspect,
+  renameAspect,
+  startEditing,
+} from "~/data/actions";
 
 const Container = styled.span`
   align-items: center;
@@ -52,12 +57,22 @@ export function AspectView({ aspect, dispatch }: Props): React.FC {
   function onClick() {
     const actions = [
       {
+        name: "Delete",
+        icon: "minus",
         action: () => {
           const confirmed = window.confirm("Are you sure?");
           if (confirmed) dispatch(deleteAspect(aspect.id));
         },
-        icon: "minus",
-        name: "Remove Aspect",
+      },
+      {
+        name: "Rename",
+        icon: "edit",
+        action: () => {
+          const newName = window.prompt(`New name for “${aspect.name}”:`);
+          if (newName) {
+            dispatch(renameAspect(aspect.id, newName));
+          }
+        },
       },
     ];
     dispatch(startEditing(`“${aspect.name}”`, actions));

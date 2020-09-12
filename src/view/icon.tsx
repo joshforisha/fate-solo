@@ -7,6 +7,7 @@ const Container = styled.svg`
   opacity: 0.6;
 
   & line {
+    fill: var(--white);
     stroke: var(--white);
   }
 `;

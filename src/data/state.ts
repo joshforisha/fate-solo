@@ -99,6 +99,19 @@ export function update(state: State, action: Action): State {
         })),
       };
 
+    case ActionType.RenameAspect:
+      return {
+        ...state,
+        entities: state.entities.map((entity) => ({
+          ...entity,
+          aspects: entity.aspects.map((aspect) =>
+            aspect.id === action.aspectId
+              ? { ...aspect, name: action.name }
+              : aspect
+          ),
+        })),
+      };
+
     case ActionType.StartEditing:
       return {
         ...state,
