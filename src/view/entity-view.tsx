@@ -10,6 +10,7 @@ import {
   createBoost,
   createStressTrack,
   deleteEntity,
+  renameEntity,
   startEditing,
   subtractFatePoint,
 } from "~/data/actions";
@@ -90,6 +91,16 @@ export function EntityView({ dispatch, entity }: Props): React.FC {
         icon: "minus",
         action: () => {
           dispatch(subtractFatePoint(entity.id));
+        },
+      },
+      {
+        name: "Rename",
+        icon: "edit",
+        action: () => {
+          const newName = window.prompt(`New name for “${entity.name}”:`);
+          if (newName) {
+            dispatch(renameEntity(entity.id, newName));
+          }
         },
       },
       {

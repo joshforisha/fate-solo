@@ -112,6 +112,15 @@ export function update(state: State, action: Action): State {
         })),
       };
 
+    case ActionType.RenameEntity:
+      return {
+        ...state,
+        entities: updateEntity(state.entities, action.entityId, (entity) => ({
+          ...entity,
+          name: action.name,
+        })),
+      };
+
     case ActionType.StartEditing:
       return {
         ...state,
